@@ -1,0 +1,130 @@
+#include<iostream>
+#include<iomanip>
+#include<cmath>
+
+/*
+Program Title: <Coffee Store>
+
+File Description:
+<This program stores the number of coffee purchased and calculates the total sold by price and gallons.>
+*/
+using namespace std; 
+
+ 
+const double small_price = 1.75;
+const double medium_price = 1.90;
+const double large_price = 2.00;
+
+const double GALLON = 128.0;
+
+void shop_menu()
+{
+	cout << "Coffee Shoe Main Menu\n";
+	cout << "1. Purchase a cup of coffee\n";
+	cout << "2. Display total number total number of cups sold\n";
+	cout << "3. Display total amount of coffee sold\n"; 
+	cout << "4. Display total shop profits\n";
+	cout << "5. Exit\n"; 
+}
+
+ int purchase_coffee( int small_sold, int medium_sold, int large_sold)
+{ 	
+	 int size;
+	cout << "Which cup would you like to purchase?\n";
+	cout << fixed << setprecision(2) << "\n";
+	cout << "1. Small (9 fl oz): $" << small_price << "\n";
+	cout << "2. Medium (12 fl oz: $" << medium_price << "\n";
+	cout << "3. Large (15 fl oz): $" << large_price << "\n";
+	cout << "-----> ";
+	cin >> size;
+	if (size == 1) {
+		small_sold++;
+	}
+	else if (size == 2) {
+		medium_sold++;
+	}
+	else if (size == 3) {
+		large_sold++;
+	}
+	else {
+		cout << "Invalid input. Try again..." << endl;
+		purchase_coffee( small_sold, medium_sold, large_sold);
+
+	}
+	
+	return size; 
+}
+
+void show_cups_sold(int small_sold1, int medium_sold2, int large_sold3)
+{
+	cout << "Cups sold:" << endl;
+	cout << "  9 fl oz - " << small_sold1 << endl;
+	cout << " 12 fl oz - " << medium_sold2 << endl;
+	cout << " 15 fl oz - " << large_sold3 << endl;
+}
+	
+
+double calc_total_gals_sold( int small_sold, int medium_sold, int large_sold)
+{
+	double total_coffee_sold = (small_sold * 9.0 + medium_sold * 12.0 + large_sold * 15.0) / GALLON;
+	return total_coffee_sold;
+}
+double calc_store_profits(int small_sold, int medium_sold, int large_sold) {
+	double total_profit = small_sold * small_price + medium_sold * medium_price + large_sold * large_price;
+	return total_profit;
+}
+
+int main()
+{
+	int small_sold = 0;
+	int medium_sold = 0;
+	int large_sold = 0;
+	int command;
+
+
+		shop_menu();
+		cout << "-----> ";
+		cin >> command;
+		if (command == 1) {
+			int size = purchase_coffee(small_sold, medium_sold, large_sold);
+
+			return main();
+
+		}
+		else if (command == 2) {
+			void show_cups_sold();
+			{
+				cout << "Cups sold:" << endl;
+				cout << "  9 fl oz - " << small_sold << endl;
+				cout << " 12 fl oz - " << medium_sold << endl;
+				cout << " 15 fl oz - " << large_sold << endl;
+			}
+			return main();
+		}
+		else if (command == 3) {
+
+			calc_total_gals_sold(small_sold, medium_sold, large_sold);
+			int total_coffee_sold = calc_total_gals_sold(small_sold, medium_sold, large_sold);
+			cout << "Total coffee sold: " << fixed << setprecision(2) << total_coffee_sold << " gallons" << endl;
+
+			return main();
+		}
+		else if (command == 4)
+		{
+			calc_store_profits(small_sold, medium_sold, large_sold);
+
+			int total_profit = calc_store_profits(small_sold, medium_sold, large_sold);
+			cout << "Total profit: $" << fixed << setprecision(2) << total_profit << endl;
+
+			return main();
+		}
+		else if (command == 5) {
+			return 0;
+		}
+		else {
+			cout << " Error: Incorrect Menu Option!   Enter again...";
+			return main();
+
+		}
+
+}
